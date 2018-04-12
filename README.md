@@ -1,2 +1,2 @@
 # soapui
-A default SoapUI installation for Docker
+A default SoapUI installation for Docker.
