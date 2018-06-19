@@ -1,7 +1,7 @@
 FROM centos:7
 MAINTAINER Maikel Dolle <maikel@itmagix.nl>
 
-#  Version
+# Version
 ENV SOAPUI_VERSION 5.4.0
 
 COPY src/entry_point.sh /opt/bin/entry_point.sh
@@ -11,7 +11,12 @@ COPY src/server_index.html /opt/bin/server_index.html
 RUN chmod +x /opt/bin/entry_point.sh
 RUN chmod +x /opt/bin/server.py
 
+# Update container and install needed packages
 RUN yum -y update && yum -y install curl java-1.8.0-openjdk
+
+# Set timezone
+RUN rm -rf /etc/localtime
+RUN ln -s /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime
 
 # Download and unarchive SoapUI
 RUN mkdir -p /opt && \
